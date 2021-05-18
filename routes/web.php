@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\IdeaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +17,12 @@ use Inertia\Inertia;
 |
 */
 
+Route::view('/', 'index')->name('home');
+
+Route::get('dashboard', [App\Http\Controllers\PageController::class, 'dashboard'])
+    ->middleware('auth:sanctum')
+    ->name('dashboard');
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -24,6 +32,13 @@ Route::get('/', function () {
     ]);
 });
 
+Route::resource('ideas', IdeaController::class)
+    ->middleware(['auth:sanctum', 'verified']);
+
+
+/*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+*/
+

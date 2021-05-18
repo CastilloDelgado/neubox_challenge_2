@@ -18,7 +18,7 @@
         <a
           href="#nosotros"
           class="block mt-4 lg:inline-block lg:mt-0 text-red-emprend hover:text-red-emprend-dark mr-4"
-          >Nostros</a
+          >Nosotros</a
         >
         <a
           href="#servicios"
@@ -40,11 +40,19 @@
           class="block mt-4 lg:inline-block lg:mt-0 text-red-emprend hover:text-red-emprend-dark mr-4"
           >Contacto</a
         >
-        <a
-          href="#"
+        <inertia-link
+          :href="route('login')"
           class="block mt-4 lg:inline-block lg:mt-0 text-red-emprend hover:text-red-emprend-dark mr-4"
-          >Iniciar Sesión</a
         >
+          Iniciar Sesión
+        </inertia-link>
+        <inertia-link
+          v-if="canRegister"
+          :href="route('register')"
+          class="block mt-4 lg:inline-block lg:mt-0 text-red-emprend hover:text-red-emprend-dark mr-4"
+        >
+          Registrate
+        </inertia-link>
       </div>
     </nav>
   </header>
@@ -402,7 +410,7 @@
       </div>
       <div class="flex w-full">
         <div class="w-1/2 pl-12">
-          <form action="" class="mt-6">
+          <form action="" class="mt-6 pr-12">
             <p class="font-bold text-4xl">Escríbenos</p>
             <p class="font-bold text-base text-red-emprend mt-5">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -447,9 +455,19 @@
                 placeholder="Mensaje"
               />
             </div>
+            <div class="w-full flex justify-end">
+              <button
+                class="bg-red-emprend rounded-sm px-16 py-3 mt-5 text-white hover:bg-red-emprend-dark"
+              >
+                <div class="flex">
+                  Enviar
+                  <ArrowRightIcon class="w-6 h-6 ml-3 text-white" />
+                </div>
+              </button>
+            </div>
           </form>
         </div>
-        <div class="w-1/2 p-12 bg-black-emprend">
+        <div class="w-1/2 p-5 bg-black-emprend">
           <div class="">
             <div style="width: 100%">
               <iframe
@@ -461,13 +479,92 @@
                 marginwidth="0"
                 src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Les%20Rambles,%201%20Barcelona,%20Spain+(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
               ></iframe>
+              <div class="w-full text-white p-5">
+                <p class="text-2xl font-bold">Ubicación</p>
+                <hr class="block w-5/12 border-5 my-5 border-red-emprend" />
+                <div class="pl-5 text-lg">
+                  <div class="flex">
+                    <PhoneIcon class="w-12 h-12 mr-5 text-red-emprend" />
+                    <p>33 1234 5678</p>
+                  </div>
+                  <div class="flex">
+                    <MailIcon class="w-12 h-12 mr-5 text-red-emprend" />
+                    <p>info@emprend.com</p>
+                  </div>
+                  <div class="flex">
+                    <LocationMarkerIcon
+                      class="w-12 h-12 mr-5 text-red-emprend"
+                    />
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Dolorum veritatis.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p class="text-gray-emprend-dark">Heeeeeeeeeeeey</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-emprend-dark">
+    <div class="pb-6 pt-3">
+      <div class="w-full flex justify-center">
+        <div class="w-3/12 flex justify-center">
+          <img src="https://i.ibb.co/Sf3gdMf/logo-inverted.png" alt="" />
+        </div>
+      </div>
+      <div class="w-full flex justify-center">
+        <hr class="block w-2/3 border-5 mb-5 border-red-emprend" />
+      </div>
+      <div class="w-full flex justify-center text-white">
+        <div class="w-1/2 flex justify-center text-xl">
+          <div class="w-1/3 flex">
+            <PhoneIcon class="w-12 h-12 mr-5 text-white" />
+            <div>
+              <p class="font-bold">Teléfono:</p>
+              <p>(33)1234 5678</p>
+            </div>
+          </div>
+          <div class="w-1/3">
+            <p class="font-bold">Aceptamos</p>
+            <div class="flex mt-2">
+              <CreditCardIcon class="w-6 h-6 mr-5 text-white" />
+              <CreditCardIcon class="w-6 h-6 mr-5 text-white" />
+              <CreditCardIcon class="w-6 h-6 mr-5 text-white" />
+              <CreditCardIcon class="w-6 h-6 mr-5 text-white" />
+              <CreditCardIcon class="w-6 h-6 mr-5 text-white" />
+              <CreditCardIcon class="w-6 h-6 mr-5 text-white" />
+            </div>
+          </div>
+          <div class="w-1/3 flex">
+            <MailIcon class="w-12 h-12 mr-5 text-white" />
+            <div>
+              <p class="font-bold">Contacto:</p>
+              <p>info@emprend.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full flex bg-red-emprend py-5">
+      <div class="w-1/2 flex justify-center text-white font-bold">
+        NEUBOX 2019 ® - Derechos reservados
+      </div>
+      <div class="w-1/2 flex justify-center">
+        <CreditCardIcon class="w-6 h-6 mr-5 text-white" />
+        <CreditCardIcon class="w-6 h-6 mr-5 text-white" />
+        <CreditCardIcon class="w-6 h-6 mr-5 text-white" />
+        <CreditCardIcon class="w-6 h-6 mr-5 text-white" />
+        <CreditCardIcon class="w-6 h-6 mr-5 text-white" />
+        <CreditCardIcon class="w-6 h-6 mr-5 text-white" />
+        <CreditCardIcon class="w-6 h-6 mr-5 text-white" />
+      </div>
+    </div>
+  </footer>
 </template>
 
 <style scoped>
@@ -522,6 +619,8 @@ import {
   EmojiHappyIcon,
   MailIcon,
   PhoneIcon,
+  LocationMarkerIcon,
+  CreditCardIcon,
 } from "@heroicons/vue/solid";
 
 import TwitterLogo from "@/Pages/Logos/TwitterLogo";
@@ -543,6 +642,8 @@ export default {
     EmojiHappyIcon,
     MailIcon,
     PhoneIcon,
+    LocationMarkerIcon,
+    CreditCardIcon,
   },
 
   props: {
