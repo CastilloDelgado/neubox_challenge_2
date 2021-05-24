@@ -1,61 +1,129 @@
 <template>
   <!-- Navbar -->
-  <header class="lg:sticky lg:top-0 lg:z-50 p-1 bg-white">
-    <nav class="flex flex-col lg:flex-row m-1 p-4  w-full">
-      <div class="lg:w-1/3">
-        <img
-          src="https://i.ibb.co/HHPwVRV/emprend-logo.png"
-          alt=""
-          class="object-contain h-12 block lg:inline-block"
-        />
-      </div>
-      <div
-        class="flex flex-col lg:flex-row md:w-full lg:w-2/3 justify-between lg:pl-5 lg:mx-5 lg:pt-3"
+  <header
+    class="sticky top-0 z-50 p-1 bg-white flex flex-wrap flex-row justify-between md:items-center md:space-x-4 relative"
+  >
+    <a href="" class="block">
+      <img
+        src="https://i.ibb.co/HHPwVRV/emprend-logo.png"
+        alt=""
+        class="object-contain h-12 block lg:inline-block"
+      />
+    </a>
+    <button
+      class="inline-block lg:hidden w-8 h-8 bg-gray-200 text-gray-600 m-3"
+      @click="menuOpen = !menuOpen"
+    >
+      <svg
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <a
-          href="#inicio"
-          class="block mt-4 lg:inline-block lg:mt-0 text-red-emprend hover:text-red-emprend-dark mr-4 text-center"
-          >Inicio</a
-        >
-        <a
-          href="#nosotros"
-          class="block mt-4 lg:inline-block lg:mt-0 text-red-emprend hover:text-red-emprend-dark mr-4 text-center"
-          >Nosotros</a
-        >
-        <a
-          href="#servicios"
-          class="block mt-4 lg:inline-block lg:mt-0 text-red-emprend hover:text-red-emprend-dark mr-4 text-center"
-          >Servicios</a
-        >
-        <a
-          href="#caracteristicas"
-          class="block mt-4 lg:inline-block lg:mt-0 text-red-emprend hover:text-red-emprend-dark mr-4 text-center"
-          >Características</a
-        >
-        <a
-          href="#equipo"
-          class="block mt-4 lg:inline-block lg:mt-0 text-red-emprend hover:text-red-emprend-dark mr-4 text-center"
-          >Equipo</a
-        >
-        <a
-          href="#contacto"
-          class="block mt-4 lg:inline-block lg:mt-0 text-red-emprend hover:text-red-emprend-dark mr-4 text-center"
-          >Contacto</a
-        >
-        <inertia-link
-          :href="route('login')"
-          class="block mt-4 lg:inline-block lg:mt-0 text-red-emprend hover:text-red-emprend-dark mr-4 text-center"
-        >
-          Iniciar Sesión
-        </inertia-link>
-        <inertia-link
-          v-if="canRegister"
-          :href="route('register')"
-          class="block mt-4 lg:inline-block lg:mt-0 text-red-emprend hover:text-red-emprend-dark mr-4 text-center"
-        >
-          Registrate
-        </inertia-link>
-      </div>
+        <path
+          fill-rule="evenodd"
+          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
+    </button>
+    <nav
+      :class="{ flex: menuOpen, hidden: !menuOpen }"
+      v-on:click="menuOpen = false"
+      class="lg:hidden py-5 top-12 left-0 flex flex-col lg:flex-row w-full bg-white text-red-emprend"
+    >
+      <a
+        href="#inicio"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+        >Inicio</a
+      >
+      <a
+        href="#nosotros"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+        >Nosotros</a
+      >
+      <a
+        href="#servicios"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+        >Servicios</a
+      >
+      <a
+        href="#caracteristicas"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+        >Características</a
+      >
+      <a
+        href="#equipo"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+        >Equipo</a
+      >
+      <a
+        href="#contacto"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+        >Contacto</a
+      >
+      <inertia-link
+        v-if="canLogin"
+        :href="route('login')"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+      >
+        Iniciar Sesión
+      </inertia-link>
+      <inertia-link
+        v-if="canRegister"
+        :href="route('register')"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+        :class="{hidden: !canRegister, block: canRegister}"
+      >
+        Registrate
+      </inertia-link>
+    </nav>
+    <nav
+      class="hidden lg:block lg:relative lg:px-6 py-5 top-12 left-0 lg:top-0 z-20 flex flex-col lg:flex-row w-full lg:w-auto bg-white text-red-emprend"
+    >
+      <a
+        href="#inicio"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+        >Inicio</a
+      >
+      <a
+        href="#nosotros"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+        >Nosotros</a
+      >
+      <a
+        href="#servicios"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+        >Servicios</a
+      >
+      <a
+        href="#caracteristicas"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+        >Características</a
+      >
+      <a
+        href="#equipo"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+        >Equipo</a
+      >
+      <a
+        href="#contacto"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+        >Contacto</a
+      >
+      <inertia-link
+        :href="route('login')"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+      >
+        Iniciar Sesión
+      </inertia-link>
+      <inertia-link
+        v-if="canRegister"
+        :href="route('register')"
+        class="block mt-4 lg:inline-block lg:mt-0 hover:text-red-emprend-dark hover:underline mr-4 text-center"
+         :class="{hidden: !canRegister, block: canRegister}"
+      >
+        Registrate
+      </inertia-link>
     </nav>
   </header>
   <!-- Inicio -->
@@ -363,39 +431,43 @@
             <div class="flex mt-5">
               <EmojiHappyIcon class="w-12 h-12 mr-5 text-red-emprend" />
               <input
-                class="text-gray-300 border-none w-full"
+                class=" border-none w-full"
                 type="text"
                 placeholder="Nombre"
+                id="name"
+                pattern="[a-zA-Z\s]*$"
               />
             </div>
             <div class="flex mt-5">
               <MailIcon class="w-12 h-12 mr-5 text-red-emprend" />
               <input
-                class="text-gray-300 border-none w-full"
-                type="text"
+                class="border-none w-full"
+                type="email"
                 placeholder="Correo Electrónico"
+                id="email"
               />
             </div>
             <div class="flex mt-5">
               <PhoneIcon class="w-12 h-12 mr-5 text-red-emprend" />
               <input
-                class="text-gray-300 border-none w-full"
-                type="text"
+                class="border-none w-full"
+                type="number"
                 placeholder="Teléfono"
+                id="phone"
               />
             </div>
             <div class="flex mt-5">
               <CalendarIcon class="w-12 h-12 mr-5 text-red-emprend" />
               <input
-                class="text-gray-300 border-none w-full"
-                type="text"
+                class="border-none w-full"
+                type="date"
                 placeholder="Fecha"
               />
             </div>
             <div class="flex mt-5">
               <ChatIcon class="w-12 h-12 mr-5 text-red-emprend" />
-              <input
-                class="text-gray-300 border-none w-full"
+              <textarea
+                class="border-none w-full"
                 type="text"
                 placeholder="Mensaje"
               />
@@ -466,7 +538,9 @@
         <hr class="block w-2/3 border-5 mb-5 border-red-emprend" />
       </div>
       <div class="w-full flex flex-col lg:flex-row justify-center text-white">
-        <div class="md:w-3/3 lg:w-2/3 flex flex-col lg:flex-row justify-center text-xl">
+        <div
+          class="md:w-3/3 lg:w-2/3 flex flex-col lg:flex-row justify-center text-xl"
+        >
           <div class="w-full lg:w-1/3 flex justify-center">
             <PhoneIcon class="w-12 h-12 mr-5 text-white" />
             <div>
@@ -601,5 +675,11 @@ export default {
     laravelVersion: String,
     phpVersion: String,
   },
+
+  data(){
+    return {
+      menuOpen: false
+    };
+  }
 };
 </script>

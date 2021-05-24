@@ -249,13 +249,28 @@
           }"
           class="sm:hidden"
         >
-          <div class="pt-2 pb-3 space-y-1">
-            <jet-responsive-nav-link
-              :href="route('dashboard')"
-              :active="route().current('dashboard')"
-            >
-              Dashboard
-            </jet-responsive-nav-link>
+          <div class="pl-3 pt-2 pb-3 space-y-1 flex-col">
+            <div>
+              <jet-nav-link href="/" :active="route().current('home')">
+                Home
+              </jet-nav-link>
+            </div>
+            <div>
+              <jet-nav-link
+                :href="route('dashboard')"
+                :active="route().current('dashboard')"
+              >
+                Dashboard
+              </jet-nav-link>
+            </div>
+            <div>
+              <jet-nav-link
+                :href="route('ideas.index')"
+                :active="route().current('ideas')"
+              >
+                Ideas
+              </jet-nav-link>
+            </div>
           </div>
 
           <!-- Responsive Settings Options -->
@@ -389,8 +404,6 @@ import JetDropdown from "@/Jetstream/Dropdown";
 import JetDropdownLink from "@/Jetstream/DropdownLink";
 import JetNavLink from "@/Jetstream/NavLink";
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
-
-
 
 export default {
   components: {

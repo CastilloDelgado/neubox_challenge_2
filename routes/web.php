@@ -32,6 +32,7 @@ Route::get('/', function () {
     ]);
 });
 
+
 Route::resource('ideas', IdeaController::class)
     ->middleware(['auth:sanctum', 'verified']);
 

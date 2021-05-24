@@ -16,7 +16,7 @@ class IdeaController extends Controller
     public function index()
     {
         $ideas = Idea::latest()->take(10)->get();
-        foreach($ideas as $idea){
+        foreach ($ideas as $idea) {
             $idea->user;
         }
         return Inertia::render('Ideas/Index', [
@@ -59,7 +59,13 @@ class IdeaController extends Controller
      */
     public function show(Idea $idea)
     {
-        //
+        $ideas = Idea::latest()->take(10)->get();
+        foreach ($ideas as $idea) {
+            $idea->user;
+        }
+        return Inertia::render('Ideas/Index', [
+            'ideas' => $ideas
+        ]);
     }
 
     /**
